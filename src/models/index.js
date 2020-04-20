@@ -21,5 +21,12 @@ const User = new Schema({
   dataJoined: { type: Date },
   credit: { type: Number, default: 1000 },
 });
+const Transactions = new Schema({
+  amount: { type: Number, default: 0 },
+  chatStatus: { type: Object, default: '' },
+});
 
-module.exports = { UserModel: mongoose.model('Users', User) };
+module.exports = {
+  UserModel: mongoose.model('Users', User),
+  TransactionsModel: mongoose.model('Transactions', Transactions),
+};
