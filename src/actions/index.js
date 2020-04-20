@@ -1,15 +1,14 @@
+const prices = [100, 50, 10, 5];
 const { Markup, Extra } = require('telegraf');
-const { TransactionsModel } = require('../models');
 const blackJackOffline = require('./blackJackoffline');
 module.exports = (bot) => {
   prices.map((value) =>
     bot.action(`addBet:${value}`, (ctx) => {
       // console.log(ctx.update.callback_query.message);
       const messageObj = ctx.update.callback_query.message;
-      const prices = [100, 50, 10, 5];
       const buttons = [
         [...prices.map((value) => Markup.callbackButton(`💲+${value}`, `addBet:${value}`))],
-        [Markup.callbackButton(`بیخیال✖️`, `cancelSessionBot`), Markup.callbackButton(`بزن بریم✋`, `startSessionBot`)],
+        [Markup.callbackButton(`بیخیال❌`, `cancelSessionBot`), Markup.callbackButton(`بزن بریم✋`, `startSessionBot`)],
       ];
 
       let prevText = `${messageObj.text}`;
@@ -28,5 +27,6 @@ module.exports = (bot) => {
     ctx.deleteMessage();
     return ctx.answerCbQuery(`اوکی کنسل کردم`);
   });
+
   bot.action('startSessionBot', blackJackOffline.startSession);
 };

@@ -25,8 +25,17 @@ const Transactions = new Schema({
   amount: { type: Number, default: 0 },
   chatStatus: { type: Object, default: '' },
 });
+const Games = new Schema({
+  player1: { type: String, required: true },
+  player2: { type: String, required: true },
+  bet_amount: { type: Number, required: true },
+  player1_deck: { type: Array },
+  player2_deck: { type: Array },
+  ended: { type: Boolean, default: false },
+});
 
 module.exports = {
   UserModel: mongoose.model('Users', User),
   TransactionsModel: mongoose.model('Transactions', Transactions),
+  GameModel: mongoose.model('Games', Games),
 };
