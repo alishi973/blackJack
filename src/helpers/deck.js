@@ -17,15 +17,28 @@ module.exports = {
       game.ended = true;
       const user = await UserModel.findById(game.player1);
       user.credit += game.bet_amount * 2;
+      user.save();
       logs.push(`${game.player2.userName} Lose Game`);
+    }
+    if (player1Sum == 21 && !game.player1_done) {
+      game.ended = true;
+      const user = await UserModel.findById(game.player1);
+      user.credit += game.bet_amount * 2;
+      user.save();
+      logs.push(`${game.player1.userName} Make Ace`);
+    }
+    if (player2Sum == 21 && !game.player2_done) {
+      game.ended = true;
+      logs.push(`${game.player2.userName} Make Ace `);
     }
     const caption = `
     ${game.player1.userName} Deck:${game.player1_deck.map((card) => card.name)}=>${player1Sum}
     ${game.player2.userName} Deck:${game.player2_deck.map((card) => card.name)}=>${player2Sum}
+    ${logs.length > 0 ? '---' : ''}
     ${logs}
     `;
 
-    const game_buttons = [
+    const game_buttons = !game.player1_done && [
       Markup.callbackButton(`Hit☝️`, `HitOff|${sessionId}`),
       Markup.callbackButton(`Stand✋`, `StandOff|${sessionId}`),
     ];
@@ -35,7 +48,7 @@ module.exports = {
         ? Markup.inlineKeyboard([...game_buttons]).extra()
         : Markup.inlineKeyboard([Markup.callbackButton(`Retry`, `newGameWithBot`)]).extra(),
     );
-    return message;
+    return game;
   },
   newGameOff: async (ctx) => {
     const prices = [100, 50, 10, 5];

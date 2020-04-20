@@ -49,8 +49,10 @@ module.exports = {
   },
   StandOff: async (ctx, sessionId) => {
     const game = await GameModel.findById(sessionId);
-    actionWithDelay(sessionId);
-    ctx.reply(game.player1);
+    game.player1_done = true;
+    await game.save();
+    actionWithDelay(ctx, sessionId);
+    // ctx.reply(game.player1);
   },
   retry: (ctx) => {
     newGameOff(ctx);

@@ -31,6 +31,8 @@ const Games = new Schema({
   bet_amount: { type: Number, required: true },
   player1_deck: { type: Array },
   player2_deck: { type: Array },
+  player1_done: { type: Boolean, default: false },
+  player2_done: { type: Boolean, default: false },
   ended: { type: Boolean, default: false },
 });
 
