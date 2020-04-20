@@ -1,32 +1,25 @@
 {
-  "name": "telegraf-template",
+  "name": "blackjack",
   "version": "1.0.0",
-  "description": "Telegram bot template based on telegraf.js.org",
-  "main": "dist/app.js",
-  "repository": "https://github.com/backmeupplz/telegraf-template",
-  "author": "backmeupplz <backmeupplz@gmail.com>",
-  "license": "MIT",
-  "private": false,
+  "description": "BlackJack Telegram Bot",
+  "main": "app.js",
   "scripts": {
-    "distribute": "yarn build-ts && node dist/app.js",
-    "develop": "concurrently -k -i -p \"[{name}]\" -n \"Node,TypeScript\" -c \"yellow.bold,cyan.bold\" \"yarn watch-js\" \"yarn watch-ts\"",
-    "build-ts": "tsc --skipLibCheck",
-    "watch-ts": "tsc -w --skipLibCheck",
-    "watch-js": "nodemon dist/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "concurrently": "^5.0.0",
-    "nodemon": "^2.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alishi973/blackJack.git"
   },
+  "author": "Ali Shirzade <ShirzadehAli973@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alishi973/blackJack/issues"
+  },
+  "homepage": "https://github.com/alishi973/blackJack#readme",
   "dependencies": {
-    "@typegoose/typegoose": "^6.1.5",
-    "@types/dotenv": "^8.2.0",
-    "@types/mongoose": "^5.5.32",
-    "@types/node": "^12.12.12",
     "dotenv": "^8.2.0",
-    "mongoose": "^5.7.12",
-    "telegraf": "^3.33.3",
-    "telegraf-i18n": "^6.6.0",
-    "typescript": "^3.7.2"
+    "mongoose": "^5.9.9",
+    "nodemon": "^2.0.3",
+    "telegraf": "^3.37.0"
   }
 }
