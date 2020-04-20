@@ -1,0 +1,25 @@
+{
+  "name": "blackjack-bot",
+  "version": "1.0.0",
+  "description": "Robot For Black Jack In Telegram Messanger",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Casino",
+    "BlackJack",
+    "21",
+    "Ace",
+    "King",
+    "Queen",
+    "Jack"
+  ],
+  "author": "Ali Shirzad",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.9",
+    "telegraf": "^3.37.0"
+  }
+}
