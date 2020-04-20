@@ -19,6 +19,7 @@ const User = new Schema({
   fname: { type: 'String' },
   lname: { type: 'String' },
   dataJoined: { type: Date },
+  credit: { type: Number, default: 1000 },
 });
 
 module.exports = { UserModel: mongoose.model('Users', User) };
