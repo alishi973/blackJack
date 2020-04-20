@@ -7,3 +7,4 @@ const User = new Schema({
   fname: { type: 'String' },
   lname: { type: 'String' },
 });
+module.exports = mongoose.model('Users', User);
