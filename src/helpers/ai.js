@@ -1,25 +1,26 @@
 const { GameModel } = require('../models');
 const { renderDeck } = require('./deck');
 const { randomCard, sumCard, random } = require('./cards');
-module.exports = {
-  actionWithDelay: async (ctx, sessionId) => {
+
+const actionWithDelayRecursive = async (ctx, sessionId) => {
+  setTimeout(async () => {
     const game = await GameModel.findById(sessionId);
-    game.player2_deck.push(randomCard());
     const sumDeck = sumCard(game.player2_deck);
-    await game.save();
-    renderDeck(sessionId, ctx);
-    console.log('sumDeck', sumDeck);
-    if (sumDeck < 21) {
+    if (sumDeck < 21 && sumCard(game.player1_deck) > sumDeck) {
       const diffrence = 21 - sumDeck;
-      console.log('diffrence', diffrence);
-      if (random(0, 10) < diffrence) {
-        console.log('again');
-        return this.actionWithDelay(ctx, sessionId);
+      if (random(0, 8) < diffrence) {
+        game.player2_deck.push(randomCard());
+        await game.save();
+        renderDeck(sessionId, ctx);
+        return actionWithDelayRecursive(ctx, sessionId);
       }
     }
-    console.log('Final Round');
     game.player2_done = true;
     await game.save();
-    renderDeck(sessionId, ctx);
-  },
+    return renderDeck(sessionId, ctx);
+  }, 2000);
+};
+
+module.exports = {
+  actionWithDelay: async (ctx, sessionId) => actionWithDelayRecursive(ctx, sessionId),
 };
