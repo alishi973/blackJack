@@ -34,7 +34,7 @@ module.exports = {
     const game = await ctx.reply(messageText, Markup.inlineKeyboard([...buttons]).extra()); */
     const game = await renderDeck(newGame.id, ctx);
     setTimeout(() => {
-      ctx.deleteMessage(game.message_id);
+      // ctx.deleteMessage(game.message_id);
       newGame.ended = true;
       newGame.save();
     }, 60000);

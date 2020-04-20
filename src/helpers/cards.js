@@ -13,10 +13,11 @@ const cards = [
   { name: 'Queen', value: 10 },
   { name: 'King', value: 10 },
 ];
+const random = (start, end) => Math.floor(Math.random() * end) + start;
 module.exports = {
   cards,
   randomCard: () => cards[random(0, cards.length - 1)],
   sumCard: (deck) =>
     deck.map((card) => (deck.length < 3 && card.name == 'Ace' ? 11 : card.value)).reduce((a, b) => a + b, 0),
+  random,
 };
-const random = (start, end) => Math.floor(Math.random() * end) + start;
