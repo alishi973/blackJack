@@ -1,4 +1,5 @@
 const { Markup } = require('telegraf');
+const { newGameOff } = require('../helpers/deck');
 module.exports = {
   startNewGame: (ctx) => {
     ctx.reply(
@@ -7,7 +8,7 @@ module.exports = {
     );
   },
   startNewGameWithBot: async (ctx) => {
-    const prices = [100, 50, 10, 5];
+    /* const prices = [100, 50, 10, 5];
     const buttons = [
       [...prices.map((value) => Markup.callbackButton(`💲+${value}`, `addBet:${value}`))],
       [Markup.callbackButton(`بیخیال❌`, `cancelSessionBot`), Markup.callbackButton(`بزن بریم✋`, `startSessionBot`)],
@@ -15,7 +16,8 @@ module.exports = {
     ctx.reply(
       `میخوایم یه بازی شروع کنیم،بگو چقد میخوای بزاری فعلا انقد گزاشتی: 💲${0}`,
       Markup.inlineKeyboard(buttons).extra(),
-    );
+    ); */
+    newGameOff(ctx);
   },
 };
 

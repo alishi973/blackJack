@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const ObjectID = mongoose.Types.ObjectId;
 mongoose
   .connect(process.env.MONGO, {
     useNewUrlParser: true,
@@ -26,8 +26,8 @@ const Transactions = new Schema({
   chatStatus: { type: Object, default: '' },
 });
 const Games = new Schema({
-  player1: { type: String, required: true },
-  player2: { type: String, required: true },
+  player1: { type: ObjectID, ref: 'Users' },
+  player2: { type: ObjectID, ref: 'Users', default: ObjectID('5e9e0c5402a80b9041d045a8') },
   bet_amount: { type: Number, required: true },
   player1_deck: { type: Array },
   player2_deck: { type: Array },

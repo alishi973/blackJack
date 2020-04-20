@@ -23,10 +23,11 @@ module.exports = (bot) => {
     }),
   );
 
-  bot.action('cancelSessionBot', (ctx, next) => {
+  bot.action('cancelSessionBot', (ctx) => {
     ctx.deleteMessage();
     return ctx.answerCbQuery(`اوکی کنسل کردم`);
   });
 
   bot.action('startSessionBot', blackJackOffline.startSession);
+  bot.action('newGameWithBot', blackJackOffline.retry);
 };
