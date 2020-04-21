@@ -11,10 +11,15 @@ module.exports = {
     let lastIndexOfMoney = prevText.lastIndexOf(':');
     let currentPrice = parseInt(prevText.slice(lastIndexOfMoney + 4, prevText.length));
     const user = await UserModel.findById(ctx.dbuser.id);
+    const user2 = await UserModel.findOne({ fname: 'Bot' });
+    if (!user2) {
+      user2 = await new UserModel({ fname: 'bot', lname: '', userName: 'im_fine_bot' }).save();
+    }
     user.credit -= currentPrice;
     await user.save();
     const newGame = new GameModel({
       player1: ctx.dbuser.id,
+      player2: user2.id,
       bet_amount: currentPrice,
     });
 
